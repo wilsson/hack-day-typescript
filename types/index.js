@@ -1,4 +1,3 @@
-var max = 10;
 // String
 var myString = 'myString';
 var myStringTwo = 'myString';
@@ -28,3 +27,7 @@ function myFunction() {
 function error(message) {
     throw new Error(message);
 }
+// Type assertion “angle-bracket”
+var value = "this is a string";
+var strLength = value.length;
+var max = {};
