@@ -6,6 +6,7 @@
   "scripts": {
     "types": "tsc ./types/index.ts",
     "interface": "tsc ./interface/index.ts",
+    "class": "tsc ./class/index.ts",
     "demo": "tsc ./demo/index.ts"
   },
   "keywords": [],

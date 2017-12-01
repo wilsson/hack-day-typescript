@@ -1,42 +1,37 @@
-// Services
-var Http = /** @class */ (function () {
-    function Http() {
-        this.fake = {
-            name: 'wilson',
-            age: 110
-        };
+var Leaflet = /** @class */ (function () {
+    function Leaflet() {
     }
-    Http.prototype.request = function (url, type) {
-        return this.fake;
+    Leaflet.prototype.renderLeaflet = function (cordenates) {
+        var lat = cordenates.lat, lng = cordenates.lng;
+        var map = window.L.map('map').setView([lat, lng], 4);
+        window.L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
     };
-    return Http;
+    return Leaflet;
 }());
-var Template = /** @class */ (function () {
-    function Template() {
+var GoogleMaps = /** @class */ (function () {
+    function GoogleMaps() {
     }
-    Template.prototype.merge = function (tpl, data) {
-        return '<h1>My Template merge :D</h1>';
+    GoogleMaps.prototype.renderGoogleMaps = function (cordenates) {
+        var map = new window.google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: cordenates
+        });
     };
-    return Template;
+    return GoogleMaps;
 }());
-// Component
-var Component = /** @class */ (function () {
-    function Component() {
-        this.html = '';
-        this.template = new Template();
-        this.http = new Http();
-        this.initialize();
+var ComponentStore = /** @class */ (function () {
+    function ComponentStore() {
+        this.map = new Leaflet();
     }
-    Component.prototype.initialize = function () {
-        var data = this.http.request('/list-packages', 'post');
-        var tpl = document.getElementById('tpl').innerHTML;
-        this.html = this.template.merge(tpl, data);
+    ComponentStore.prototype.initialize = function () {
+        var cordenates = { lat: -25.363, lng: 131.044 };
+        this.map.renderLeaflet(cordenates);
     };
-    Component.prototype.render = function () {
-        var content = document.getElementById('content');
-        content.innerHTML = this.html;
-    };
-    return Component;
+    return ComponentStore;
 }());
-var component = new Component();
-component.render();
+function initMap() {
+    var componentStore = new ComponentStore();
+    componentStore.initialize();
+}

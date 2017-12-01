@@ -1,46 +1,35 @@
-// Services
-class Http {
-    public fake: object;
-    constructor(){
-        this.fake = {
-            name: 'wilson', 
-            age: 110
-        }
-    }
-    public request(url: string, type: string){
-        return this.fake;
+class Leaflet {
+    public renderLeaflet(cordenates: any): void {
+        let { lat, lng } = cordenates;
+        var map = (<any>window).L.map('map').setView([lat, lng], 4);
+        (<any>window).L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
     }
 }
 
-class Template {
-    public merge(tpl: string, data: object): string {
-        return '<h1>My Template merge :D</h1>';
+class GoogleMaps {
+    public renderGoogleMaps(cordenates: object): void {
+        let map = new (<any>window).google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: cordenates
+        });
     }
 }
 
-// Component
-class Component {
-    public http: Http;
-    public template: Template;
-    public html: string;
-    constructor(){
-        this.html = '';
-        this.template = new Template();
-        this.http = new Http();
-        this.initialize();
+class ComponentStore {
+    public map: Leaflet;
+    constructor() {
+        this.map = new Leaflet();
     }
 
-    public initialize() {
-        let data: object = this.http.request('/list-packages', 'post');
-        let tpl: string = document.getElementById('tpl').innerHTML;
-        this.html = this.template.merge(tpl, data);
-    }
-
-    public render(){
-        let content: HTMLElement = document.getElementById('content');
-        content.innerHTML = this.html;
+    public initialize(){
+        let cordenates = {lat: -25.363, lng: 131.044};
+        this.map.renderLeaflet(cordenates);
     }
 }
 
-let component = new Component();
-component.render();
+function initMap() {
+    let componentStore = new ComponentStore();
+    componentStore.initialize();
+}
