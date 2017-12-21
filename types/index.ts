@@ -1,14 +1,11 @@
 // String
 let myString: string = 'myString';
-let myStringTwo =  <string>'myString';
 
 // Number
 let myNumber: number = 10;
-let myNumberTwo = <number>10;
 
 // Boolean
 let myBoolean: boolean = true;
-let myBooleanTwo =  <boolean>true;
 
 // Enum
 enum Power {
@@ -25,8 +22,9 @@ x = ['string', 10];
 let myArray: number[] = [1, 2, 3, 4];
 
 let myArrayTwo: Array<number> = [1, 2, 3, 4];
-
 // Void
+
+let unusable: void = undefined;
 function myFunction(): void {
     // TODO: code here
 }
@@ -35,6 +33,7 @@ function myFunction(): void {
 function error(message: string): never {
     throw new Error(message);
 }
+
 
 // Type assertion “angle-bracket”
 let value: any = "this is a string";
