@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "types": "tsc ./types/index.ts",
-    "class": "tsc ./class/index.ts",
-    "demo": "tsc ./demo/index.ts"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

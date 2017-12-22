@@ -16,7 +16,7 @@ enum Power {
 // Tuple
 let x: [string, number];
 
-x = ['string', 10];
+x = ['string', 10,];
 
 //Array
 let myArray: number[] = [1, 2, 3, 4];

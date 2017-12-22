@@ -1,12 +1,9 @@
 // String
 var myString = 'myString';
-var myStringTwo = 'myString';
 // Number
 var myNumber = 10;
-var myNumberTwo = 10;
 // Boolean
 var myBoolean = true;
-var myBooleanTwo = true;
 // Enum
 var Power;
 (function (Power) {
@@ -16,10 +13,12 @@ var Power;
 // Tuple
 var x;
 x = ['string', 10];
+console.log('x>', x);
 //Array
 var myArray = [1, 2, 3, 4];
 var myArrayTwo = [1, 2, 3, 4];
 // Void
+var unusable = undefined;
 function myFunction() {
     // TODO: code here
 }
@@ -30,4 +29,3 @@ function error(message) {
 // Type assertion “angle-bracket”
 var value = "this is a string";
 var strLength = value.length;
-var max = {};
